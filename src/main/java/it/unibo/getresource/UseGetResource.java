@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  */
 public final class UseGetResource {
 
-    private static String ROOT = "it/unibo/getresource/";
+    private static final String ROOT = "it/unibo/getresource/";
 
     private UseGetResource() {
     }
