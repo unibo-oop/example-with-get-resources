@@ -21,7 +21,7 @@ repositories { // Where to search for dependencies
 
 dependencies {
     // Suppressions for SpotBugs
-    compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.4")
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.5")
 }
 
 application {
