@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 import javax.swing.BoxLayout;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * Example class loading an image with {@link Class#getResource(String)}.
@@ -25,6 +27,8 @@ public final class UseGetResource {
     }
 
     /**
+     * Main method.
+     *
      * @param args
      *            Ignored
      * @throws IOException if an I/O error occurs
@@ -36,9 +40,9 @@ public final class UseGetResource {
         final InputStream in = Objects.requireNonNull(
             ClassLoader.getSystemResourceAsStream(ROOT + "settings/settings")
         );
-        String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
-            line = br.readLine();
+        final String line;
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
+            line = br.readLine(); // Read the first line and close the stream
         }
         final JLabel lab2 = new JLabel(line);
         /*
@@ -58,9 +62,11 @@ public final class UseGetResource {
         f.getContentPane().add(pan);
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.pack();
         f.setLocationByPlatform(true);
-        f.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            f.pack();
+            f.setVisible(true);
+        });
     }
 
 }
