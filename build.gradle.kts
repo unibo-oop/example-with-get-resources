@@ -15,6 +15,12 @@ plugins {
     id("org.danilopianini.gradle-java-qa") version "1.156.0"
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
+}
+
 repositories { // Where to search for dependencies
     mavenCentral()
 }
@@ -26,5 +32,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("it.unibo.getresource.UseGetResource")
+    mainClass = "it.unibo.getresource.UseGetResource"
 }

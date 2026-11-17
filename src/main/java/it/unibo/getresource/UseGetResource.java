@@ -48,7 +48,10 @@ public final class UseGetResource {
         /*
          * Loading of icons and images is made very easy!
          */
-        final URL imgURL = ClassLoader.getSystemResource(ROOT + "images/gandalf.jpg");
+        final URL imgURL = Objects.requireNonNull(
+            ClassLoader.getSystemResource(ROOT + "images/gandalf.jpg")
+        );
+        IO.println("Requested URL found at: " + imgURL);
         final ImageIcon icon = new ImageIcon(imgURL);
         /*
          * From now on, it's just plain GUI construction
